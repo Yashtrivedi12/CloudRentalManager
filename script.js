@@ -302,7 +302,7 @@ function startTypingAnimations() {
         // Start typing animations in sequence
         setTimeout(() => {
             // Type "Hi " - emoji will be preserved by typeText function
-            typeText(greeting, "Hi ", 80, () => {
+            typeText(greeting, "Hi", 80, () => {
                 setTimeout(() => {
                     // Type "I'm Yash Trivedi" character by character
                     typeText(name, "I'm Yash Trivedi", 100, () => {
