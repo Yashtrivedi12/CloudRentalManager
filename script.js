@@ -13,14 +13,14 @@ navLinks.forEach(link => {
         e.preventDefault();
         const targetId = link.getAttribute('href');
         const targetSection = document.querySelector(targetId);
-        
+
         if (targetSection) {
             const offsetTop = targetSection.offsetTop - 100;
             window.scrollTo({
                 top: offsetTop,
                 behavior: 'smooth'
             });
-            
+
             // Close mobile menu if open
             navMenu.classList.remove('active');
             hamburger.classList.remove('active');
@@ -71,15 +71,15 @@ function toggleScrollToTop() {
     if (window.scrollY > 300) {
         if (!scrollToTopBtn.classList.contains('show')) {
             scrollToTopBtn.classList.add('show');
-            
+
             // Clear any existing timeouts
             clearTimeout(expandTimeout);
             clearTimeout(collapseTimeout);
-            
+
             // Expand to show text after button appears
             expandTimeout = setTimeout(() => {
                 scrollToTopBtn.classList.add('expanded');
-                
+
                 // Collapse after 1.5 seconds
                 collapseTimeout = setTimeout(() => {
                     scrollToTopBtn.classList.remove('expanded');
@@ -125,12 +125,12 @@ window.addEventListener('load', () => {
 function updateActiveNavLink() {
     const sections = document.querySelectorAll('section[id]');
     const scrollPos = window.scrollY + 120;
-    
+
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.offsetHeight;
         const sectionId = section.getAttribute('id');
-        
+
         if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
             navLinks.forEach(link => {
                 link.classList.remove('active');
@@ -205,7 +205,7 @@ const submitButton = contactForm.querySelector('.btn-submit');
 
 contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    
+
     // Create ripple effect
     const ripple = submitButton.querySelector('.ripple');
     if (ripple) {
@@ -214,16 +214,16 @@ contactForm.addEventListener('submit', (e) => {
             ripple.style.animation = 'ripple-animation 0.6s ease-out';
         }, 10);
     }
-    
+
     // Get form data
     const formData = new FormData(contactForm);
     const data = Object.fromEntries(formData);
-    
+
     // Simulate form submission
     submitButton.disabled = true;
     submitButton.querySelector('span').textContent = 'Sending...';
     submitButton.setAttribute('aria-busy', 'true');
-    
+
     setTimeout(() => {
         // Reset form
         contactForm.reset();
@@ -231,13 +231,13 @@ contactForm.addEventListener('submit', (e) => {
         submitButton.removeAttribute('aria-busy');
         submitButton.querySelector('span').textContent = 'Message Sent! ✓';
         submitButton.setAttribute('aria-live', 'polite');
-        
+
         setTimeout(() => {
             submitButton.querySelector('span').textContent = 'Send Message';
             submitButton.removeAttribute('aria-live');
         }, 3000);
     }, 1500);
-    
+
     // In a real application, you would send the data to a server here
     console.log('Form submitted:', data);
 });
@@ -253,7 +253,7 @@ if (hero && heroContent) {
     window.addEventListener('scroll', () => {
         const scrolled = window.pageYOffset;
         const heroHeight = hero.offsetHeight;
-        
+
         if (scrolled < heroHeight && scrolled > 100) {
             // Subtle fade only, no heavy parallax transform
             const opacity = Math.max(0.7, 1 - (scrolled / heroHeight) * 0.3);
@@ -274,7 +274,7 @@ function typeText(element, text, speed = 50, callback) {
     const preservedChildren = Array.from(element.children).map(child => child.cloneNode(true));
     element.textContent = '';
     element.classList.remove('complete');
-    
+
     function type() {
         if (i < text.length) {
             element.textContent += text.charAt(i);
@@ -289,7 +289,7 @@ function typeText(element, text, speed = 50, callback) {
             if (callback) callback();
         }
     }
-    
+
     type();
 }
 
@@ -297,7 +297,7 @@ function startTypingAnimations() {
     const greeting = document.getElementById('greeting');
     const name = document.getElementById('name');
     const role = document.getElementById('role');
-    
+
     if (greeting && name && role) {
         // Start typing animations in sequence
         setTimeout(() => {
@@ -332,39 +332,39 @@ function createHeroDotsOptimized() {
     const dotsContainer = document.getElementById('heroDots');
     const heroSection = document.querySelector('.hero');
     if (!dotsContainer || !heroSection) return;
-    
+
     // Prevent multiple initializations
     if (dotsContainer.children.length > 0) return;
-    
+
     // Calculate number of dots based on viewport size (performance optimized)
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
     const dotDensity = Math.min(Math.floor((viewportWidth * viewportHeight) / 10000), 111111); // Increased density (was 15000, now 10000) and max (was 60, now 90)
-    
+
     // Clear existing dots array
     heroDots = [];
-    
+
     // Create dots with initial random positions
     for (let i = 0; i < dotDensity; i++) {
         const dot = document.createElement('div');
         dot.className = 'hero-dot';
-        
+
         // Random initial position
         const initialX = Math.random() * 100;
         const initialY = Math.random() * 100;
-        
+
         // Random blinking parameters
         const blinkDelay = Math.random() * 2;
         const blinkDuration = 2.5 + Math.random() * 2.5;
-        
+
         // Apply blinking animation
         dot.style.animation = `dotBlink ${blinkDuration}s ease-in-out infinite`;
         dot.style.animationDelay = `${blinkDelay}s`;
-        
+
         // Set initial position (will be calculated properly in animate function)
         dot.style.left = '0';
         dot.style.top = '0';
-        
+
         // Store dot data with different chase speeds for staggered effect
         const dotData = {
             element: dot,
@@ -380,11 +380,11 @@ function createHeroDotsOptimized() {
             idleTargetX: initialX + (Math.random() - 0.5) * 20,
             idleTargetY: initialY + (Math.random() - 0.5) * 20
         };
-        
+
         heroDots.push(dotData);
         dotsContainer.appendChild(dot);
     }
-    
+
     // Set initial positions after a brief delay to ensure hero section is rendered
     setTimeout(() => {
         const heroRect = document.querySelector('.hero').getBoundingClientRect();
@@ -400,31 +400,31 @@ function createHeroDotsOptimized() {
 
 function startDotAnimation() {
     if (animationFrameId) return; // Already running
-    
+
     function animate() {
         const heroSection = document.querySelector('.hero');
         if (!heroSection || heroDots.length === 0) {
             animationFrameId = requestAnimationFrame(animate);
             return;
         }
-        
+
         const heroRect = heroSection.getBoundingClientRect();
         const heroWidth = heroRect.width;
         const heroHeight = heroRect.height;
-        
+
         heroDots.forEach((dot) => {
             const dotElement = dot.element;
-            
+
             if (isMouseInHero) {
                 // Calculate cursor position relative to hero section
                 const cursorX = ((mouseX - heroRect.left) / heroWidth) * 100;
                 const cursorY = ((mouseY - heroRect.top) / heroHeight) * 100;
-                
+
                 // Calculate distance from dot to cursor in percentage
                 const dx = cursorX - dot.x;
                 const dy = cursorY - dot.y;
                 const distance = Math.sqrt(dx * dx + dy * dy);
-                
+
                 // Only attract dots that are VERY close to cursor (small radius)
                 if (distance < dot.attractionRadius) {
                     // Calculate attraction strength based on distance (stronger when closer)
@@ -432,13 +432,13 @@ function startDotAnimation() {
                     const maxDistance = dot.attractionRadius;
                     const normalizedDistance = Math.min(distance / maxDistance, 1);
                     const attractionStrength = 1 - normalizedDistance; // 1 at cursor, 0 at edge
-                    
+
                     // Move towards cursor, but maintain a small distance
                     const angle = Math.atan2(dy, dx);
                     const followDistance = 2; // Keep 2% distance from cursor
                     dot.targetX = cursorX - Math.cos(angle) * followDistance;
                     dot.targetY = cursorY - Math.sin(angle) * followDistance;
-                    
+
                     // Use distance-based speed for smoother movement with easing
                     const adjustedSpeed = dot.speed * (0.3 + attractionStrength * 0.7);
                     // Apply easing for ultra-smooth movement
@@ -461,29 +461,29 @@ function startDotAnimation() {
                 // Idle movement when mouse is not in hero section
                 dot.targetX = dot.idleTargetX;
                 dot.targetY = dot.idleTargetY;
-                
+
                 // Change idle target occasionally
                 if (Math.random() < 0.005) {
                     dot.idleTargetX = dot.idleX + (Math.random() - 0.5) * 20;
                     dot.idleTargetY = dot.idleY + (Math.random() - 0.5) * 20;
                 }
-                
+
                 // Smooth interpolation towards idle target
                 dot.x += (dot.targetX - dot.x) * dot.idleSpeed;
                 dot.y += (dot.targetY - dot.y) * dot.idleSpeed;
             }
-            
+
             // Calculate pixel positions
             const pixelX = (dot.x / 100) * heroWidth;
             const pixelY = (dot.y / 100) * heroHeight;
-            
+
             // Update dot position using transform for better performance
             dotElement.style.transform = `translate(${pixelX}px, ${pixelY}px)`;
         });
-        
+
         animationFrameId = requestAnimationFrame(animate);
     }
-    
+
     animate();
 }
 
@@ -506,23 +506,23 @@ function handleMouseLeave() {
 function initCursorTracking() {
     const heroSection = document.querySelector('.hero');
     if (!heroSection) return;
-    
+
     // Track mouse movement globally for better responsiveness
     document.addEventListener('mousemove', handleMouseMove, { passive: true });
-    
+
     // Track when mouse enters/leaves hero section
     heroSection.addEventListener('mouseenter', handleMouseEnter);
     heroSection.addEventListener('mouseleave', handleMouseLeave);
-    
+
     // Also check mouse position on mouse move to handle edge cases
     document.addEventListener('mousemove', (e) => {
         const heroSection = document.querySelector('.hero');
         if (heroSection) {
             const rect = heroSection.getBoundingClientRect();
-            const isInside = e.clientX >= rect.left && 
-                           e.clientX <= rect.right && 
-                           e.clientY >= rect.top && 
-                           e.clientY <= rect.bottom;
+            const isInside = e.clientX >= rect.left &&
+                e.clientX <= rect.right &&
+                e.clientY >= rect.top &&
+                e.clientY <= rect.bottom;
             isMouseInHero = isInside;
         }
     }, { passive: true });
