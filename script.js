@@ -302,7 +302,7 @@ function startTypingAnimations() {
         // Start typing animations in sequence
         setTimeout(() => {
             // Type "Hi " - emoji will be preserved by typeText function
-            typeText(greeting, "Hi ", 80, () => {
+            typeText(greeting, "Hi", 80, () => {
                 setTimeout(() => {
                     // Type "I'm Yash Trivedi" character by character
                     typeText(name, "I'm Yash Trivedi", 100, () => {
@@ -339,7 +339,7 @@ function createHeroDotsOptimized() {
     // Calculate number of dots based on viewport size (performance optimized)
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
-    const dotDensity = Math.min(Math.floor((viewportWidth * viewportHeight) / 10000), 90); // Increased density (was 15000, now 10000) and max (was 60, now 90)
+    const dotDensity = Math.min(Math.floor((viewportWidth * viewportHeight) / 10000), 111111); // Increased density (was 15000, now 10000) and max (was 60, now 90)
     
     // Clear existing dots array
     heroDots = [];

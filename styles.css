@@ -460,8 +460,8 @@ body {
 }
 
 .teal-accent {
-    color: var(--accent-primary);
-    text-shadow: 0 0 20px rgba(138, 63, 252, 0.5);
+    color: var(--text-primary);
+    text-shadow: 0 0 30px rgba(138, 63, 252, 0.5);
     position: relative;
 }
 
@@ -512,7 +512,7 @@ body {
 
 .btn-secondary {
     background: transparent;
-    color: #8A3FFC;
+    color: #FFF;
     border: 2px solid #8A3FFC;
     backdrop-filter: blur(10px);
 }
@@ -521,6 +521,21 @@ body {
     background: rgba(138, 63, 252, 0.1);
     border-color: var(--accent-primary);
     box-shadow: 0 0 20px rgba(138, 63, 252, 0.3);
+}
+
+.btn-glass-bright {
+    background: rgba(255, 255, 255, 0.1);
+    color: #FFF;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.btn-glass-bright:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #FFF;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
 }
 
 .scroll-indicator {
@@ -688,7 +703,7 @@ section {
 .stat-number {
     font-size: 2.5rem;
     font-weight: 700;
-    color: var(--accent-primary);
+    color: var(--text-primary);
     margin-bottom: 0.5rem;
 }
 
@@ -1172,7 +1187,7 @@ section {
     right: 0;
     bottom: 0;
     background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200"><rect fill="%231C092E" width="400" height="200"/><circle fill="%238A3FFC" opacity="0.1" cx="200" cy="100" r="80"/></svg>');
-    opacity: 0.5;
+    opacity: 0.2;
 }
 
 .project-overlay {
