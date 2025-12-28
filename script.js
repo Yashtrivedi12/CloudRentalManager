@@ -677,6 +677,15 @@ function initModals() {
 }
 
 // Initialize modals on load
-window.addEventListener('load', initModals);
+
+// Update Copyright Year
+function updateYear() {
+    const yearElement = document.getElementById('year');
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+    }
+}
+
+window.addEventListener('load', updateYear);
 
 
