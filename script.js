@@ -702,7 +702,9 @@ function initModals() {
     }
 }
 
+
 // Initialize modals on load
+window.addEventListener('load', initModals);
 
 // Update Copyright Year
 function updateYear() {
