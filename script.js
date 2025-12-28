@@ -621,3 +621,62 @@ const throttledScroll = throttle(() => {
 
 window.addEventListener('scroll', throttledScroll, { passive: true });
 
+/* ============================================
+   Project Modals
+   ============================================ */
+
+function initModals() {
+    const modalButtons = document.querySelectorAll('.view-project-btn');
+    const closeButtons = document.querySelectorAll('.close-modal');
+    const modals = document.querySelectorAll('.modal');
+
+    // Open Modal
+    modalButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const modalId = btn.getAttribute('data-modal');
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('show');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            }
+        });
+    });
+
+    // Close Modal via Close Button
+    closeButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const modal = btn.closest('.modal');
+            closeModal(modal);
+        });
+    });
+
+    // Close Modal via Click Outside
+    window.addEventListener('click', (e) => {
+        if (e.target.classList.contains('modal')) {
+            closeModal(e.target);
+        }
+    });
+
+    // Close via Escape Key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            const visibleModal = document.querySelector('.modal.show');
+            if (visibleModal) {
+                closeModal(visibleModal);
+            }
+        }
+    });
+
+    function closeModal(modal) {
+        if (modal) {
+            modal.classList.remove('show');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+    }
+}
+
+// Initialize modals on load
+window.addEventListener('load', initModals);
+
+
