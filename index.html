@@ -9,7 +9,7 @@
     <title>Yash Trivedi - Flutter Developer | Mobile App Developer Portfolio</title>
     <meta name="title" content="Yash Trivedi - Flutter Developer | Mobile App Developer Portfolio">
     <meta name="description"
-        content="Professional Flutter Developer with 1.5+ years of experience building high-performance mobile applications. Specializing in cross-platform development, clean architecture, and AI-powered features. View portfolio projects including Pictora AI, Cloud Rental Manager, and more.">
+        content="Professional Flutter Developer with 1.6+ years of experience building high-performance mobile applications. Specializing in cross-platform development, clean architecture, and AI-powered features. View portfolio projects including Pictora AI, Cloud Rental Manager, and more.">
     <meta name="keywords"
         content="Flutter Developer, Mobile App Developer, Dart Developer, Flutter Portfolio, Cross-platform Development, Android Developer, iOS Developer, UI/UX Designer, Clean Architecture, State Management, API Integration, Firebase, Flutter Projects, Mobile Development India, Gujarat Developer">
     <meta name="author" content="Yash Trivedi">
@@ -172,6 +172,10 @@
             }
         ]
     }
+    </script>
+
+    <script>
+       document.getElementById("year").textContent = new Date().getFullYear();
     </script>
 </head>
 
@@ -591,10 +595,12 @@
 
     <!-- Footer -->
     <footer class="footer" role="contentinfo">
-        <div class="container">
-            <p class="footer-text">© 2024 Yash Trivedi. All rights reserved.</p>
-        </div>
-    </footer>
+  <div class="container">
+    <p class="footer-text">
+      © <span id="year"></span> Yash Trivedi. All rights reserved.
+    </p>
+  </div>
+</footer>
 
     <!-- Scroll to Top Button -->
     <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
